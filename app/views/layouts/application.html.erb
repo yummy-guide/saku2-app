@@ -4,64 +4,14 @@
     <%= render "layouts/head" %>
   </head>
   <body>
-    <div class="drawer drawer-end">
-      <input id="my-drawer" type="checkbox" class="drawer-toggle" />
-      <div class="drawer-content h-screen">
-        <!-- Page content here -->
-        <%= render "layouts/header" %>
-        <div class="<%= container_class %> max-w-md mx-auto mt-4">
-          <%= yield %>
-        </div>
-        <%= render "layouts/footer" %>
-      </div>
-      <div class="drawer-side right-0 z-40">
-        <label for="my-drawer" class="drawer-overlay"></label>
-        <ul class="menu p-4 w-80 h-full bg-base-200 text-base-content">
-          <!-- Sidebar content here -->
-          <li><a href="/about" target="_blank" class=""> About </a> </li>
-          <li>
-            <% if user_signed_in? %>
-              <div class="dropdown dropdown-end">
-                <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-                  <div class="w-10 rounded-full">
-                    <img alt="Avatar" src="https://i.pravatar.cc/500?img=<%=(1..70).to_a.sample%>" />
-                  </div>
-                </label>
-                <ul tabindex="0" class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-                  <li>
-                    <a class="justify-between"> Profile
-                      <span class="badge">New</span>
-                    </a>
-                  </li>
-                  <li><a>Settings</a></li>
-                  <li><%= button_to "Log out", destroy_user_session_path, method: :delete, data: { turbo: false } %> </li>
-                </ul>
-              </div>
-            <% else %>
-              <%= link_to "Sign In", new_user_session_path, class:"btn btn-ghost btn-sm rounded-btn", data: { turbo: false } %>
-            <% end %>
-
-            <div title="Change Theme" class="dropdown dropdown-end">
-              <div tabindex="0" class="m-1 normal-case btn-ghost btn">
-                <%= icon :swatch %>
-                <span class="hidden md:inline">
-          Change Theme
-        </span>
-                <%= icon :chevron_down, class: 'w-4 h-4' %>
-              </div>
-              <div class="mt-14 overflow-y-auto shadow-2xl top-px dropdown-content h-96 w-52 z-[1] rounded-b-box bg-base-200 text-base-content">
-                <ul class="p-4 menu compact" data-controller="theme">
-                  <% themes.each do |theme| %>
-                    <li><a tabindex="0" data-action="click->theme#switch" data-theme-value="<%= theme %>"><%= theme.humanize %></a></li>
-                  <% end %>
-                </ul>
-              </div>
-            </div>
-
-          </li>
-        </ul>
-      </div>
+  <div class="h-screen">
+    <!-- Page content here -->
+    <%= render "layouts/header" %>
+    <div class="container md:max-w-[375px] md:mx-auto">
+      <%= yield %>
     </div>
+    <%= render "layouts/footer" %>
+  </div>
     <%= render "layouts/analytics" %>
   </body>
 </html>
