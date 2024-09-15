@@ -40,5 +40,3 @@
 /node_modules
 /.yarn
 !/.yarn/releases
-/public/service-worker.js
-/public/service-worker.js.map

@@ -31,7 +31,12 @@ module.exports = {
       square: 'square'
     }
   },
-  plugins: [require('@tailwindcss/typography'), require('daisyui')],
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/aspect-ratio'),
+    require('@tailwindcss/typography'),
+    require('daisyui')
+  ],
   daisyui: {
     themes: [
       'light',

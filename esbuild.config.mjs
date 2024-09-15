@@ -8,7 +8,6 @@ import { copy } from 'esbuild-plugin-copy'
 
 const entryPoints = [
   'application.js',
-  'service-worker.js'
 ]
 const watchDirectories = [
   './app/assets/javascripts/**/*.js',
@@ -61,10 +60,3 @@ if (process.argv.includes('--watch')) {
   })
 }
 console.log(`🚀 Build node esbuild complete!`)
-console.log('📱 Inject PWA workbox...')
-exec('workbox injectManifest workbox.config.js', (error, stdout, stderr) => {
-  if (error) {
-    console.error(`exec error: ${error}`)
-    return
-  }
-});
