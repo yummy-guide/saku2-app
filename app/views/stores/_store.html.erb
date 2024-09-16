@@ -1,0 +1,32 @@
+<div id="<%= dom_id store %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Name:</strong>
+    <%= store.name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Location:</strong>
+    <%= store.location %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Image:</strong>
+    <%= image_tag(store.image.variant(resize_to_limit: [100, 100])) %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Thumb:</strong>
+    <%= image_tag(store.thumb.variant(resize_to_limit: [100, 100])) %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Description:</strong>
+    <%= store.description %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Price:</strong>
+    <%= store.price %>
+  </p>
+
+</div>
