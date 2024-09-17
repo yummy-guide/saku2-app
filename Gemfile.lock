@@ -1,6 +1,9 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    action_auth (1.5.1)
+      bcrypt (~> 3.1.0)
+      rails (~> 7.1)
     actioncable (7.2.1)
       actionpack (= 7.2.1)
       activesupport (= 7.2.1)
@@ -81,6 +84,7 @@ GEM
       public_suffix (>= 2.0.2, < 7.0)
     ast (2.4.2)
     base64 (0.2.0)
+    bcrypt (3.1.20)
     bigdecimal (3.1.8)
     bindex (0.8.1)
     bootsnap (1.18.4)
@@ -358,6 +362,7 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
+  action_auth (~> 1.5)
   active_storage_validations
   activestorage-cloudinary-service
   bootsnap
