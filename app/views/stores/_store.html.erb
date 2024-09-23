@@ -1,32 +1,16 @@
-<div id="<%= dom_id store %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Name:</strong>
-    <%= store.name %>
-  </p>
+<%= link_to store, class: "block mb-4" do %>
+  <div id="<%= dom_id store %>" class="card w-96 flex flex-row bg-white shadow-lg">
+    <!-- 左側: 1/4の幅 -->
+    <div class="w-1/4 flex-shrink-0">
+      <%= image_tag(store.thumb.variant(resize_to_limit: [100, 100])) %>
+    </div>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Location:</strong>
-    <%= store.location %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Image:</strong>
-    <%= image_tag(store.image.variant(resize_to_limit: [100, 100])) %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Thumb:</strong>
-    <%= image_tag(store.thumb.variant(resize_to_limit: [100, 100])) %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Description:</strong>
-    <%= store.description %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Price:</strong>
-    <%= store.price %>
-  </p>
-
-</div>
+    <!-- 右側: 3/4の幅 -->
+    <div class="w-3/4 pl-4 p-4">
+      <div class="text-lg font-bold"><%= store.name %></div>
+      <div class="text-sm"><%= store.location %></div>
+      <div class="text-sm"><%= store.description %></div>
+      <div class="text-sm font-medium text-gray-700"><%= store.price %></div>
+    </div>
+  </div>
+<% end %>

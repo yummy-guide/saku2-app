@@ -13,23 +13,43 @@
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <header>
-      <% if user_signed_in? %>
-        <li><%= link_to "Security", user_sessions_path %></li>
-        <li><%= button_to "Sign Out", user_session_path(current_session), method: :delete %></li>
-      <% else %>
-        <li><%= link_to "Sign In", new_user_session_path %></li>
-        <li><%= link_to "Sign Up", new_user_registration_path %></li>
-      <% end %>
-    </header>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
-    </main>
+  <header class="flex justify-between items-center p-4 bg-white shadow-md">
+    <div class="text-xl font-bold">Saku2 App</div>
+    <div class="relative">
+      <button id="menu-button" class="block lg:hidden p-2 border rounded-md focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+      </button>
+      <ul id="menu" class="hidden absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg lg:flex lg:items-center lg:space-x-4 lg:static lg:w-auto lg:mt-0 lg:bg-transparent lg:border-none lg:shadow-none">
+        <% if user_signed_in? %>
+          <li><%= link_to "Security", user_sessions_path, class: "block px-4 py-2 text-gray-800 hover:bg-gray-200 lg:hover:bg-transparent lg:hover:text-blue-600" %></li>
+          <li><%= button_to "Sign Out", user_session_path(current_session), method: :delete, class: "block px-4 py-2 text-gray-800 hover:bg-gray-200 lg:hover:bg-transparent lg:hover:text-blue-600" %></li>
+        <% else %>
+          <li><%= link_to "Sign In", new_user_session_path, class: "block px-4 py-2 text-gray-800 hover:bg-gray-200 lg:hover:bg-transparent lg:hover:text-blue-600" %></li>
+          <li><%= link_to "Sign Up", new_user_registration_path, class: "block px-4 py-2 text-gray-800 hover:bg-gray-200 lg:hover:bg-transparent lg:hover:text-blue-600" %></li>
+        <% end %>
+      </ul>
+    </div>
+  </header>
+
+  <main class="pt-4 flex bg-blue-50 min-h-screen mx-auto max-w-screen-lg">
+    <%= yield %>
+  </main>
+
+  <script>
+      document.getElementById('menu-button').addEventListener('click', function() {
+          var menu = document.getElementById('menu');
+          menu.classList.toggle('hidden');
+      });
+  </script>
   </body>
 </html>
