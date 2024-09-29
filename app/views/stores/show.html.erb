@@ -55,6 +55,12 @@
         <%= @store.location %>
       </p>
 
+      <% if @store.coupons.any?(&:active?) %>
+        <p class="text-green-500">This store has active coupons.</p>
+      <% else %>
+        <p class="text-red-500">This store has no active coupons.</p>
+      <% end %>
+
       <p class="my-5">
         <strong class="block font-medium mb-1">Description:</strong>
         <%= @store.description %>

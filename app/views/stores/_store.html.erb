@@ -1,5 +1,5 @@
 <%= link_to store, class: "block mb-4" do %>
-  <div id="<%= dom_id store %>" class="card w-96 flex flex-row bg-white shadow-lg">
+  <div id="<%= dom_id store %>" class="card w-96 flex flex-row bg-white shadow-lg <%= 'inactive-store' unless store.coupons.any?(&:active?) %>">
     <!-- 左側: 1/4の幅 -->
     <div class="w-1/4 flex-shrink-0">
       <%= image_tag(store.thumb.variant(resize_to_limit: [100, 100])) %>

@@ -1,0 +1,23 @@
+<div class="pt-4 max-w-min mx-auto">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <% content_for :title, "Coupons" %>
+
+  <div class="flex justify-between items-center mb-4">
+    <h1 class="font-bold text-4xl">Coupons</h1>
+    <%= link_to "New coupon", new_store_coupon_path(@store), class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+  </div>
+
+
+
+  <div id="stores" class="min-w-full flex flex-col justify-center items-center">
+    <% @coupons.each do |coupon| %>
+      <%= render coupon %>
+      <p>
+        <%= link_to "Show this coupon", coupon, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      </p>
+    <% end %>
+  </div>
+</div>

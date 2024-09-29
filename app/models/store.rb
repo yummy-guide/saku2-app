@@ -11,4 +11,6 @@ class Store < ApplicationRecord
             content_type: %i(gif png jpg jpeg),
             size: { less_than_or_equal_to: 500.kilobytes },
             dimension: { width: { max: 1000 }, height: { max: 1000 } }
+
+  has_many :coupons, dependent: :destroy
 end
