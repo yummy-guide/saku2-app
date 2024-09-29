@@ -1,10 +1,50 @@
-<div class="mx-auto md:w-2/3 w-full flex">
+<div class="relative w-full h-64 overflow-hidden">
+  <%= image_tag(@store.image.variant(resize_to_limit: [1200, 630]), class: "absolute top-0 left-0 w-full h-full object-cover") %>
+</div>
+
+<div class="mx-auto w-full flex flex-col">
   <div class="mx-auto">
     <% if notice.present? %>
       <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
     <% end %>
+  </div>
 
+  <div class="bg-white w-full flex flex-col py-4">
+    <div class="mx-auto w-3/5">
+      <h2 class="my-5">
+        <%= @store.name %>
+      </h2>
+
+      <p class="my-5">
+        <%= @store.price %> JPY / Person
+      </p>
+    </div>
+
+    <div class="text-center block mx-auto">
+      <%= link_to "Purchase", "#", id: "purchase-button", class: "ml-2 rounded-lg py-3 px-5 bg-white inline-block font-medium border border-blue-200", data: { stores_path: stores_path } %>
+      <!-- ダイアログ -->
+      <div id="confirmation-dialog" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center">
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+          <h2 class="text-xl font-bold mb-4">確認</h2>
+          <p class="mb-4">この操作を実行してもよろしいですか？</p>
+          <label class="inline-flex items-center">
+            <input type="checkbox" id="confirmation-checkbox" class="form-checkbox">
+            <span class="ml-2">確認しました</span>
+          </label>
+          <div class="mt-4 flex justify-end">
+            <button id="cancel-button" class="mr-2 py-2 px-4 bg-gray-300 rounded-lg">キャンセル</button>
+            <button id="confirm-button" class="py-2 px-4 bg-blue-600 text-white rounded-lg">OK</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="mx-auto w-3/5">
     <div id="<%= dom_id @store %>">
+
       <p class="my-5">
         <strong class="block font-medium mb-1">Name:</strong>
         <%= @store.name %>
@@ -16,31 +56,23 @@
       </p>
 
       <p class="my-5">
-        <strong class="block font-medium mb-1">Image:</strong>
-        <%= image_tag(@store.image.variant(resize_to_limit: [100, 100])) %>
-      </p>
-
-      <p class="my-5">
-        <strong class="block font-medium mb-1">Thumb:</strong>
-        <%= image_tag(@store.thumb.variant(resize_to_limit: [100, 100])) %>
-      </p>
-
-      <p class="my-5">
         <strong class="block font-medium mb-1">Description:</strong>
         <%= @store.description %>
       </p>
 
-      <p class="my-5">
-        <strong class="block font-medium mb-1">Price:</strong>
-        <%= @store.price %>
-      </p>
+      <div class="text-center block mx-auto">
+        <%= link_to "Back to list", stores_path, class: "ml-2 rounded-lg py-3 px-5 bg-white inline-block font-medium border border-blue-200" %>
+      </div>
 
     </div>
 
-    <%= link_to "Edit this store", edit_store_path(@store), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Back to stores", stores_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to "Destroy this store", @store, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
-    </div>
+
+    <% if Current.user&.admin? %>
+
+      <%= link_to "Edit this store", edit_store_path(@store), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      <div class="inline-block ml-2">
+        <%= button_to "Destroy this store", @store, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+      </div>
+    <% end %>
   </div>
 </div>
