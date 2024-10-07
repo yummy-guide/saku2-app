@@ -29,3 +29,11 @@
     background-color: rgba(0, 0, 0, 0.35);
     pointer-events: none;
 }
+
+.truncate-1-line {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

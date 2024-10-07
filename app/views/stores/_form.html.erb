@@ -23,7 +23,7 @@
 
   <div class="my-5">
     <%= form.label :image %>
-    <% if store.image.attached? %>
+    <% if store.image.attached? && store.image.persisted? %>
       <%= image_tag(store.image.variant(resize_to_limit: [100, 100])) %>
       <%= form.check_box :remove_image %>
       <%= form.label :remove_image, "Remove image" %>
@@ -34,7 +34,7 @@
 
   <div class="my-5">
     <%= form.label :thumb %>
-    <% if store.thumb.attached? %>
+    <% if store.thumb.attached? && store.thumb.persisted? %>
       <%= image_tag(store.thumb.variant(resize_to_limit: [100, 100])) %>
       <%= form.check_box :remove_thumb %>
       <%= form.label :remove_thumb, "Remove thumb" %>

@@ -32,7 +32,16 @@ class StoresController < ApplicationController
 
   # PATCH/PUT /stores/1
   def update
+    if params[:store][:remove_image] == '1'
+      @store.image.purge
+    end
+
+    if params[:store][:remove_thumb] == '1'
+      @store.thumb.purge
+    end
+
     if @store.update(store_params)
+      attach_images
       redirect_to @store, notice: "Store was successfully updated.", status: :see_other
     else
       render :edit, status: :unprocessable_entity
@@ -54,5 +63,10 @@ class StoresController < ApplicationController
     # Only allow a list of trusted parameters through.
     def store_params
       params.require(:store).permit(:name, :location, :description, :price, :image, :thumb)
+    end
+
+    def attach_images
+      @store.image.attach(store_params[:image]) if store_params[:image].present?
+      @store.thumb.attach(store_params[:thumb]) if store_params[:thumb].present?
     end
 end

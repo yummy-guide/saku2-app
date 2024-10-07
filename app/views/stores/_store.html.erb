@@ -1,15 +1,15 @@
 <%= link_to store, class: "block mb-4" do %>
-  <div id="<%= dom_id store %>" class="card w-96 flex flex-row bg-white shadow-lg <%= 'inactive-store' unless store.coupons.any?(&:active?) %>">
+  <div id="<%= dom_id store %>" class="card w-96 flex flex-row bg-white shadow-lg h-24 overflow-hidden <%= 'inactive-store' unless store.coupons.any?(&:active?) %>">
     <!-- 左側: 1/4の幅 -->
     <div class="w-1/4 flex-shrink-0">
-      <%= image_tag(store.thumb.variant(resize_to_limit: [100, 100])) %>
+      <%= image_tag(store.thumb.variant(resize_to_limit: [96, 96])) %>
     </div>
 
     <!-- 右側: 3/4の幅 -->
-    <div class="w-3/4 pl-4 p-4">
+    <div class="w-3/4 pl-4 p-2">
       <div class="text-lg font-bold"><%= store.name %></div>
       <div class="text-sm"><%= store.location %></div>
-      <div class="text-sm"><%= store.description %></div>
+      <div class="text-sm truncate-1-line"><%= store.description %></div>
       <div class="text-sm font-medium text-gray-700"><%= store.price %></div>
     </div>
   </div>
