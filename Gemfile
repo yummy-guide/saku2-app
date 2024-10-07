@@ -45,6 +45,10 @@ gem 'active_storage_validations'       # 画像ファイルのバリデーショ
 gem 'cloudinary', require: true        # Cloudinary
 gem 'activestorage-cloudinary-service' # Cloudinary と Active Storage の連携をする
 
+gem "action_auth", "~> 1.5"
+
+gem "action_policy"
+
 group :production do
   gem "pg", ">= 1.1"
 end
@@ -73,5 +77,3 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
-
-gem "action_auth", "~> 1.5"

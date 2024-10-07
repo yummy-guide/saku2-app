@@ -4,6 +4,8 @@ GEM
     action_auth (1.6.0)
       bcrypt (~> 3.1.0)
       rails (>= 7.1)
+    action_policy (0.7.1)
+      ruby-next-core (>= 1.0)
     actioncable (8.0.0.beta1)
       actionpack (= 8.0.0.beta1)
       activesupport (= 8.0.0.beta1)
@@ -290,6 +292,7 @@ GEM
       rubocop-minitest
       rubocop-performance
       rubocop-rails
+    ruby-next-core (1.0.3)
     ruby-progressbar (1.13.0)
     ruby-vips (2.2.2)
       ffi (~> 1.12)
@@ -385,6 +388,7 @@ PLATFORMS
 
 DEPENDENCIES
   action_auth (~> 1.5)
+  action_policy
   active_storage_validations
   activestorage-cloudinary-service
   bootsnap
