@@ -6,7 +6,7 @@ class Coupon < ApplicationRecord
   private
 
   def set_defaults
-    self.amount ||= 1
+    self.seats ||= 1
     self.active ||= true
   end
 end

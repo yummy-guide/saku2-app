@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_10_05_143404) do
+ActiveRecord::Schema[8.0].define(version: 2024_10_09_121020) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -41,7 +41,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_10_05_143404) do
 
   create_table "coupons", force: :cascade do |t|
     t.integer "store_id", null: false
-    t.integer "amount"
+    t.integer "seats"
     t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -64,6 +64,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_10_05_143404) do
     t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status"
   end
 
   create_table "users", force: :cascade do |t|
