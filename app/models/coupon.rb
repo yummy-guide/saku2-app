@@ -3,6 +3,8 @@ class Coupon < ApplicationRecord
 
   after_initialize :set_defaults, unless: :persisted?
 
+  validates :discount_amount, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
+
   private
 
   def set_defaults

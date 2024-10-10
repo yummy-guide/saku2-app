@@ -57,6 +57,6 @@ class CouponsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def coupon_params
-    params.require(:coupon).permit(:store_id, :seats, :active)
+    params.require(:coupon).permit(:store_id, :seats, :discount_amount, :active)
   end
 end
