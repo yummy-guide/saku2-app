@@ -13,4 +13,12 @@ class Store < ApplicationRecord
             dimension: { width: { max: 1000 }, height: { max: 1000 } }
 
   has_many :coupons, dependent: :destroy
+
+  def current_coupon
+    coupons&.first
+  end
+
+  def current_discount
+    current_coupon&.discount_amount
+  end
 end

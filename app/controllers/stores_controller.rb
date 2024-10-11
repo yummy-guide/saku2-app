@@ -62,7 +62,7 @@ class StoresController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def store_params
-      params.require(:store).permit(:name, :location, :description, :price, :image, :thumb)
+      params.require(:store).permit(:name, :location, :description, :charge_amount, :image, :thumb)
     end
 
     def attach_images
