@@ -1,5 +1,6 @@
 class PurchasesController < ApplicationController
   before_action :set_purchase, only: %i[ show edit update destroy ]
+  before_action :set_store, only: %i[ new create ]
 
   # GET /purchases
   def index
@@ -21,12 +22,13 @@ class PurchasesController < ApplicationController
 
   # POST /purchases
   def create
-    @purchase = Purchase.new(purchase_params)
+    @coupon = @store.coupons.find(params[:coupon_id])
+    @purchase = @coupon.purchases.build(user: Current.user, seats: params[:seats])
 
     if @purchase.save
-      redirect_to @purchase, notice: "Purchase was successfully created."
+      render json: { notice: 'Purchase was successfully created.' }, status: :created
     else
-      render :new, status: :unprocessable_entity
+      render json: { errors: @purchase.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
@@ -46,13 +48,17 @@ class PurchasesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_purchase
-      @purchase = Purchase.find(params.expect(:id))
-    end
 
-    # Only allow a list of trusted parameters through.
-    def purchase_params
-      params.expect(purchase: [ :user_id, :coupon_id, :seats ])
-    end
+  def set_store
+    @store = Store.find(params[:store_id])
+  end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_purchase
+    @purchase = Purchase.find(params.expect(:id))
+  end
+
+  # Only allow a list of trusted parameters through.
+  def purchase_params
+    params.expect(purchase: [ :user_id, :coupon_id, :seats ])
+  end
 end

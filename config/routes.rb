@@ -3,11 +3,11 @@ Rails.application.routes.draw do
 
   resources :stores do
     resources :coupons, only: [:new, :create, :index]
+    resources :purchases, only: [:create]
   end
 
   resources :coupons, only: [:show, :edit, :update, :destroy]
 
-  resources :purchases
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

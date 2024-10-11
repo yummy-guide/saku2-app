@@ -25,11 +25,22 @@
       </p>
     </div>
     <div class="text-center block mx-auto">
-      <%= link_to "Purchase", "#", id: "purchase-button", class: "ml-2 rounded-lg py-3 px-5 bg-white inline-block font-medium border border-blue-200 #{'opacity-50 cursor-not-allowed' unless @store.coupons.any?(&:active?)}", data: { stores_path: stores_path }, disabled: !@store.coupons.any?(&:active?) %>
+      <%= link_to "Purchase", "#", id: "purchase-button", class: "ml-2 rounded-lg py-3 px-5 bg-white inline-block font-medium border border-blue-200 #{'opacity-50 cursor-not-allowed' unless @store.coupons.any?(&:active?)}", data: { store_id: @store.id, coupon_id: @store.current_coupon&.id }, disabled: !@store.coupons.any?(&:active?) %>
       <!-- ダイアログ -->
       <div id="confirmation-dialog" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center">
         <div class="bg-white p-6 rounded-lg shadow-lg">
-          <h2 class="text-xl font-bold mb-4">確認</h2>
+          <div class="mt-4">
+            <label for="seats-select" class="block mb-2 text-lg font-medium text-gray-700 text-center">座席数を選択してください:</label>
+            <div class="flex justify-center">
+              <select id="seats-select" class="form-select mt-1 block w-24 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+              </select>
+            </div>
+          </div>
+
           <p class="mb-4">この操作を実行してもよろしいですか？</p>
           <label class="inline-flex items-center">
             <input type="checkbox" id="confirmation-checkbox" class="form-checkbox">

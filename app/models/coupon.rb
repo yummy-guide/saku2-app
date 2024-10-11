@@ -1,5 +1,6 @@
 class Coupon < ApplicationRecord
   belongs_to :store
+  has_many :purchases
 
   after_initialize :set_defaults, unless: :persisted?
 
